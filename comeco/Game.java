@@ -67,6 +67,7 @@ public class Game implements Runnable {
             now = System.nanoTime();
             delta += (now - lastTime)/timePerTick;
             lastTime = now;
+            // mesma velocidade para todos pcs
             if(delta >= 1){
                 tick();
                 render();
