@@ -2,6 +2,7 @@ package comeco;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import inputs.KeyManager;
 
 public class Game implements Runnable {
     private Tela tela;
@@ -14,16 +15,22 @@ public class Game implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
 
+    private KeyManager keyManager;
 
 
     public Game(int width, int height){
         this.width = width;
         this.height = height;
+        keyManager = new KeyManager();
     }
 
+    public KeyManager getKeyManeger(){
+        return keyManager;
+    }
 
     private void init(){
         tela = new Tela(width, height);
+        tela.getFrame().addKeyListener(keyManager);
     }
 
     public synchronized void start(){
@@ -36,7 +43,7 @@ public class Game implements Runnable {
     
     // atualizacoes dentro do jogo
     private void tick(){
-        
+        keyManager.tick();
     }
 
     //exibiçao dentro do jogo
