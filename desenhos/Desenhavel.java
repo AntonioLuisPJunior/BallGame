@@ -1,6 +1,6 @@
 package desenhos;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public abstract class Desenhavel {
 

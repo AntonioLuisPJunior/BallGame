@@ -1,9 +1,7 @@
 package desenhos.status;
 
 import comeco.Game;
-import desenhos.entidades.moveis.Bola; 
 import desenhos.entidades.estaticas.Retangulo; 
-import java.awt.Graphics;
 import java.awt.*;
 
 public class MenuStatus extends Status {

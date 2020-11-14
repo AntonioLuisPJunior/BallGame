@@ -17,9 +17,9 @@ public class Game implements Runnable {
     private Graphics g;
 
     private KeyManager keyManager;
+    
     private Status gameStatus;
     private Status menuStatus;
-
 
     public Game(int width, int height){
         this.width = width;
@@ -27,7 +27,7 @@ public class Game implements Runnable {
         keyManager = new KeyManager();
     }
 
-    public KeyManager getKeyManeger(){
+    public KeyManager getKeyManager(){
         return keyManager;
     }
 
@@ -50,8 +50,8 @@ public class Game implements Runnable {
     // atualizacoes dentro do jogo
     private void tick(){
         keyManager.tick();
-        if(Status.gameStatus() != null){
-            Status.gameStatus().tick();
+        if(Status.getStatus() != null){
+            Status.getStatus().tick();
         }
     }
 
@@ -68,7 +68,6 @@ public class Game implements Runnable {
         if(Status.getStatus() != null){
             Status.getStatus().render(g);
         }
-
         //fim do desenho
         bs.show();
         g.dispose();

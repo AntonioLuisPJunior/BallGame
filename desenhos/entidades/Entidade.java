@@ -29,8 +29,6 @@ public abstract class Entidade extends Desenhavel{
 
     public abstract void render(Graphics g);
 
-    public abstract void resize(int width, int heigth);
-
     public void move() {
         this.x += this.speedX;
         this.y += this.speedY;
@@ -60,6 +58,9 @@ public abstract class Entidade extends Desenhavel{
     }
     public void setSpeedY(double speedY) {
         this.speedY = speedY;
+    }
+    public Color getColor() {
+        return color;
     }
 
 }

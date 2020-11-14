@@ -1,12 +1,16 @@
 package desenhos.entidades.moveis;
 
 import desenhos.entidades.Entidade;
+import desenhos.entidades.estaticas.Retangulo;
+import utilidades.Colisao;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+
 public class Bola extends Entidade {
 
-    public final double radius;
+    private final double radius;
     public static List<Bola> bolas = new ArrayList<>();
 
     public Bola(double x, double y, double radius, double speed, double angleInDegree) {
@@ -15,6 +19,7 @@ public class Bola extends Entidade {
         this.speedY = -speed * Math.sin(Math.toRadians(angleInDegree));
         this.radius = radius;
     }
+    
     public Bola(double x, double y, double radius, double speed, double angleInDegree, Color color) {
         super(x, y, speed, color);
         this.speedX = speed * Math.cos(Math.toRadians(angleInDegree));
@@ -38,8 +43,8 @@ public class Bola extends Entidade {
                 }
             }
         }
-        for (BaBolall bola : bolas) {
-            ball.move();
+        for (Bola bola : bolas) {
+            bola.move();
         }
     }
 
@@ -53,13 +58,13 @@ public class Bola extends Entidade {
     public void tick() {
         verificarColisao();
     }
-
-    @Override
-    public void resize(int width, int heigth) {
-        
-    }
+    
     public double getMass() {
         return 2 * radius * radius * radius / 1000f;
+    }
+
+    public double getRadius() {
+        return radius;
     }
 
 }

@@ -1,8 +1,10 @@
 package desenhos.entidades.estaticas;
+
 import desenhos.entidades.Entidade;
 import java.awt.*;
 
-class Retangulo extends Entidade{
+public class Retangulo extends Entidade{
+
     private int width, height;
     public static Retangulo quadra = null;
 
@@ -11,10 +13,16 @@ class Retangulo extends Entidade{
         this.width = width;
         this.height = height;
     }
+
     public Retangulo(double x, double y, int width, int height, Color color) {
         super(x, y, 0, color);
         this.width = width;
         this.height = height;
+    }
+
+    @Override
+    public void move() {
+        
     }
 
     @Override
@@ -27,7 +35,8 @@ class Retangulo extends Entidade{
     public void tick() {
 
     }
-    
+
+    //getters setters
     public int getWidth() {
         return width;
     }
@@ -39,12 +48,6 @@ class Retangulo extends Entidade{
     }
     public void setHeight(int height) {
         this.height = height;
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        this.width = width;
-        this.height = height;   
     }
 
 }
