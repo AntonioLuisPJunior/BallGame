@@ -27,8 +27,20 @@ public class Bola extends Entidade {
         this.y += this.speedY;
     }
 
-    public void checkColision(){
-        
+    public void verificarColisao(){
+        for(Bola bola: bolas){
+            Colisao.colisao(Retangulo.quadra, bola);
+        }
+        for (int i = 0; i < bolas.size(); i++) {
+            for (int j = 0; j < bolas.size(); j++) {
+                if (i < j) {
+                    Colisao.colisao(bolas.get(i), bolas.get(j));
+                }
+            }
+        }
+        for (BaBolall bola : bolas) {
+            ball.move();
+        }
     }
 
     @Override
@@ -39,7 +51,7 @@ public class Bola extends Entidade {
 
     @Override
     public void tick() {
-        checkColision();
+        verificarColisao();
     }
 
     @Override
