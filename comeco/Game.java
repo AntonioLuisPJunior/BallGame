@@ -1,5 +1,6 @@
 package comeco;
 
+import desenhos.status.*;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import inputs.KeyManager;
@@ -16,6 +17,8 @@ public class Game implements Runnable {
     private Graphics g;
 
     private KeyManager keyManager;
+    private Status gameStatus;
+    private Status menuStatus;
 
 
     public Game(int width, int height){
@@ -31,6 +34,9 @@ public class Game implements Runnable {
     private void init(){
         tela = new Tela(width, height);
         tela.getFrame().addKeyListener(keyManager);
+        gameStatus = new GameStatus(this);
+        menuStatus = new MenuStatus(this);
+        Status.setStatus(menuStatus);
     }
 
     public synchronized void start(){
@@ -44,6 +50,9 @@ public class Game implements Runnable {
     // atualizacoes dentro do jogo
     private void tick(){
         keyManager.tick();
+        if(Status.gameStatus() != null){
+            Status.gameStatus().tick();
+        }
     }
 
     //exibiçao dentro do jogo
@@ -56,7 +65,10 @@ public class Game implements Runnable {
         g = bs.getDrawGraphics();
         g.clearRect(0, 0, width, height);
         // inicio do desenho
-        g.fillOval(200, 200, 50, 50);
+        if(Status.getStatus() != null){
+            Status.getStatus().render(g);
+        }
+
         //fim do desenho
         bs.show();
         g.dispose();
@@ -102,6 +114,11 @@ public class Game implements Runnable {
     public int getHeight() {
         return height;
     }
-    
+    public Status getGameStatus() {
+        return gameStatus;
+    }
+    public Status getMenuStatus() {
+        return menuStatus;
+    }
     
 }
